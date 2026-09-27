@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Financial Services Process Flows</title>
+<meta name="description" content="How money is lent, invested, insured, moved and reconciled, from retail banking and capital markets to the corporate finance back office.">
+
+<style>
+:root{
+  --bg:#FAF9F5; --surface:#FFFFFF; --surface-2:#E4EEE8; --ink:#13241D; --ink-soft:#4A5C53; --line:#E6DFD8;
+  --accent:#1E7A57; --accent-2:#2E7D5E; --mint:#A8C5B4; --gold:#C8A45D; --on-accent:#FAF9F5;
+  --band-bg:#0F3B2E; --band-ink:#FAF9F5; --band-soft:#C8A45D;
+  --pain-bg:#F5ECD6; --pain-label:#8A6A2B; --pill-bg:#E4EEE8; --pill-ink:#0F3B2E; --focus:#1E7A57;
+  --shadow:0 1px 0 rgba(15,59,46,.05),0 14px 32px -20px rgba(15,59,46,.45);
+  --display:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", sans-serif;
+  --body:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", sans-serif;
+  --mono:"Trebuchet MS", "Lucida Grande", "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1712; --surface:#12211A; --surface-2:#1A2E25; --ink:#EEF1EA; --ink-soft:#A9BDB2; --line:#24392F;
+    --accent:#5FBF94; --accent-2:#8FCDB0; --mint:#A8C5B4; --gold:#C8A45D; --on-accent:#0C1712;
+    --band-bg:#0F3B2E; --band-ink:#FAF9F5; --band-soft:#C8A45D;
+    --pain-bg:#2A2616; --pain-label:#D9B870; --pill-bg:#1A2E25; --pill-ink:#CFE3D8; --focus:#8FCDB0;
+    --shadow:0 1px 0 rgba(0,0,0,.25),0 14px 32px -18px rgba(0,0,0,.75);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1712; --surface:#12211A; --surface-2:#1A2E25; --ink:#EEF1EA; --ink-soft:#A9BDB2; --line:#24392F;
+  --accent:#5FBF94; --accent-2:#8FCDB0; --mint:#A8C5B4; --gold:#C8A45D; --on-accent:#0C1712;
+  --band-bg:#0F3B2E; --band-ink:#FAF9F5; --band-soft:#C8A45D;
+  --pain-bg:#2A2616; --pain-label:#D9B870; --pill-bg:#1A2E25; --pill-ink:#CFE3D8; --focus:#8FCDB0;
+  --shadow:0 1px 0 rgba(0,0,0,.25),0 14px 32px -18px rgba(0,0,0,.75);
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{text-wrap:balance}
+
+/* top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.01em;color:var(--ink)}
+.brand span{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{font-size:.86rem;font-weight:600;text-decoration:none;padding:6px 12px;border-radius:999px;color:var(--ink-soft)}
+.nav a:hover{color:var(--ink);background:var(--surface-2)}
+.nav a[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+
+/* home */
+.home-hero{padding-block:clamp(48px,9vw,104px) clamp(28px,5vw,48px)}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-2);margin:0 0 18px}
+.home-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.06;margin:0;max-width:16ch;letter-spacing:-.025em}
+.home-hero h1 em{font-style:italic;color:var(--accent);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:.08em;text-underline-offset:.12em}
+.home-hero p.lede{max-width:60ch;font-size:clamp(1.02rem,1.6vw,1.15rem);color:var(--ink-soft);margin:24px 0 0}
+.totals{display:flex;flex-wrap:wrap;gap:clamp(20px,5vw,56px);margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
+.totals div{display:flex;flex-direction:column}
+.totals strong{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:2.4rem;line-height:1;font-variant-numeric:tabular-nums}
+.totals span{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+
+.sector-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:8px 64px}
+@media (max-width:900px){.sector-grid{grid-template-columns:1fr}}
+.sector-card{position:relative;display:flex;flex-direction:column;gap:18px;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;box-shadow:var(--shadow);transition:transform .25s ease,border-color .25s ease,background .25s ease}
+.sector-card:hover{transform:translateY(-4px);border-color:var(--accent-2)}
+.sector-card .icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--band-bg);color:var(--gold)}
+.sector-card .icon svg{width:30px;height:30px}
+.sector-card .kick{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.sector-card h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:2.1rem;line-height:1.05;margin:4px 0 0}
+.sector-card p{margin:0;color:var(--ink-soft);font-size:.95rem}
+.stats{display:flex;gap:18px;font-family:var(--mono);font-size:.78rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.stats b{font-weight:500;font-size:1.05rem}
+.cat-preview{list-style:none;margin:0;padding:14px 0 0;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--ink-soft)}
+.cat-preview li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mint);margin-right:10px;vertical-align:middle}
+.cat-preview li.more{color:var(--ink-soft);font-style:italic}
+.cat-preview li.more::before{display:none}
+.card-cta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.92rem;color:var(--accent);padding-top:6px}
+.card-cta .arrow{transition:transform .25s ease}
+.sector-card:hover .arrow{transform:translateX(5px)}
+
+.howto{padding-block:0 72px}
+.howto h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.8rem,3.5vw,2.4rem);margin:0 0 20px}
+.howto ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
+@media (max-width:760px){.howto ol{grid-template-columns:1fr}}
+.howto li{counter-increment:s;border-top:2px solid var(--accent);padding-top:14px}
+.howto li::before{content:"Step " counter(s);font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.howto h3{font-size:1.05rem;margin:6px 0 4px}
+.howto p{margin:0;color:var(--ink-soft);font-size:.93rem}
+
+/* sector page */
+.band{background:var(--band-bg);color:var(--band-ink);border-bottom:3px solid var(--gold)}
+.band .wrap{padding-block:clamp(40px,7vw,80px) clamp(32px,5vw,56px)}
+.band .crumb{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--band-soft);text-decoration:none}
+.band .crumb:hover{text-decoration:underline}
+.band h1{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(2.3rem,6vw,4rem);line-height:1.02;margin:14px 0 0}
+.band p{max-width:62ch;margin:18px 0 0;color:color-mix(in srgb,var(--band-ink) 82%,transparent);font-size:1.05rem}
+.band .stats{margin-top:26px;color:var(--band-ink);gap:28px;flex-wrap:wrap}
+.band .stats span{color:var(--band-soft)}
+
+.tools{position:sticky;top:calc(env(safe-area-inset-top,0px) + 61px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.tools .wrap{display:flex;flex-direction:column;gap:10px;padding-block:14px}
+.search{position:relative;max-width:420px}
+.search input{width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px 9px 38px}
+.search input::placeholder{color:var(--ink-soft)}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--ink-soft)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chips a{flex:0 0 auto;font-size:.8rem;font-weight:600;text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);background:var(--surface);white-space:nowrap}
+.chips a:hover{border-color:var(--accent-2);color:var(--ink)}
+.chips a .n{font-family:var(--mono);font-weight:400;margin-left:6px;color:var(--accent-2)}
+.result-note{font-size:.85rem;color:var(--ink-soft);margin:0}
+
+.cats{display:flex;flex-direction:column;gap:14px;padding-block:28px 40px}
+details.cat{border:1px solid var(--line);border-radius:16px;background:var(--surface);scroll-margin-top:190px}
+details.cat > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 22px}
+details.cat > summary::-webkit-details-marker{display:none}
+.cat-title{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(1.35rem,2.6vw,1.75rem);line-height:1.15;flex:1;min-width:0}
+.count{font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);white-space:nowrap}
+.chev{width:30px;height:30px;flex:0 0 30px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);color:var(--ink);transition:transform .25s ease}
+details[open] > summary .chev{transform:rotate(180deg)}
+.cat-body{padding:4px 22px 22px;display:flex;flex-direction:column;gap:18px}
+.group-label{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin:10px 0 -4px;padding-top:12px;border-top:1px dashed var(--line)}
+.group-label:first-child{border-top:0;padding-top:0}
+
+.proc{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:22px;padding:20px;border-radius:12px;background:var(--bg);border:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+@media (max-width:820px){.proc{grid-template-columns:1fr}}
+.proc-head{display:flex;flex-direction:column;gap:10px}
+.proc h3{font-size:1.12rem;font-weight:700;margin:0;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.steps{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-soft)}
+.pill{font-size:.72rem;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-ink)}
+.proc p.desc{margin:0;color:var(--ink-soft);font-size:.94rem;max-width:60ch}
+.pain{margin:auto 0 0;padding:12px 14px;border-radius:10px;background:var(--pain-bg);font-size:.9rem;line-height:1.5}
+.pain b{display:block;font-family:var(--mono);font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pain-label);margin-bottom:4px}
+.diagram{overflow-x:auto;border-radius:10px;background:var(--surface);border:1px solid color-mix(in srgb,var(--line) 70%,transparent);padding:14px;min-height:120px;display:flex;align-items:center;justify-content:center}
+.diagram pre.mermaid{margin:0;background:transparent;font-family:var(--body);font-size:.8rem;color:var(--ink-soft);white-space:pre-wrap}
+.diagram pre.mermaid:not([data-processed]){opacity:.5}
+.diagram svg{max-width:100%;height:auto}
+
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-block:8px 64px}
+@media (max-width:640px){.pager{grid-template-columns:1fr}}
+.pager a{display:flex;flex-direction:column;gap:4px;text-decoration:none;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--surface);transition:border-color .2s ease}
+.pager a:hover{border-color:var(--accent-2)}
+.pager a.next{text-align:right;background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.pager small{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.pager span{font-family:var(--display);font-size:1.6rem;line-height:1.1}
+
+footer.site{border-top:1px solid var(--line)}
+footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:24px;font-size:.84rem;color:var(--ink-soft)}
+@media (max-width:700px){.tools{position:static}.nav{flex-wrap:nowrap;overflow-x:auto;max-width:100%}.nav a{white-space:nowrap}details.cat{scroll-margin-top:130px}}
+
+.diagram{position:relative}
+.diagram:has(svg){cursor:zoom-in}
+.zoom-btn{position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.76rem;font-weight:700;color:var(--accent);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer;opacity:.9;transition:border-color .2s ease,opacity .2s ease}
+.zoom-btn svg{width:12px;height:12px}
+.diagram:hover .zoom-btn,.zoom-btn:focus-visible{opacity:1;border-color:var(--accent)}
+.lightbox{position:fixed;inset:0;z-index:100;display:flex;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px);background:color-mix(in srgb,#06140F 62%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.lb-panel{margin:auto;width:min(1280px,100%);height:100%;max-height:900px;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.6)}
+.lb-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line)}
+.lb-title{flex:1 1 200px;min-width:0;font-weight:700;font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb-tools{display:flex;align-items:center;gap:6px}
+.lb-bar button{font:inherit;font-size:.86rem;font-weight:700;min-width:36px;height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.lb-bar button:hover{border-color:var(--accent);color:var(--accent)}
+.lb-bar button.lb-close{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.lb-pct{min-width:52px;text-align:center;font-size:.82rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.lb-view{position:relative;flex:1;overflow:hidden;background:var(--bg);cursor:grab;touch-action:none}
+.lb-view.dragging{cursor:grabbing}
+.lb-stage{position:absolute;left:0;top:0;transform-origin:0 0}
+.lb-stage svg{display:block;max-width:none!important}
+.lb-hint{padding:8px 14px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-soft)}
+@media (max-width:600px){.lb-hint{display:none}.lightbox{padding-inline:8px}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap"><a class="brand" href="index.html"><b>Process Frameworks</b><span>by Nikhil Kasturi</span></a><nav class="nav" aria-label="Sectors"><a href="index.html">Overview</a><a href="retail.html">Retail</a><a href="financial.html" aria-current="page">Financial</a><a href="life-sciences.html">Life Sciences</a></nav></div></header><main><section class="band"><div class="wrap"><a class="crumb" href="index.html">&larr; All sectors</a><h1>Financial Services</h1><p>How money is lent, invested, insured, moved and reconciled, from retail banking and capital markets to the corporate finance back office.</p><div class="stats"><div><b>12</b> <span>categories</span></div><div><b>71</b> <span>process flows</span></div></div></div></section><div class="tools"><div class="wrap"><label class="search" for="proc-search"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search processes</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg><input id="proc-search" type="search" placeholder="Search 71 processes" autocomplete="off"></label><nav class="chips" aria-label="Categories"><a href="#cat-banking">Banking<span class="n">14</span></a><a href="#cat-investment-banking-capital-markets">Investment Banking &amp; Capital Markets<span class="n">6</span></a><a href="#cat-asset-wealth-management">Asset &amp; Wealth Management<span class="n">8</span></a><a href="#cat-insurance">Insurance<span class="n">6</span></a><a href="#cat-payments-fintech">Payments &amp; Fintech<span class="n">6</span></a><a href="#cat-financial-market-infrastructure">Financial Market Infrastructure<span class="n">3</span></a><a href="#cat-private-equity-venture-capital">Private Equity &amp; Venture Capital<span class="n">4</span></a><a href="#cat-corporate-finance-financial-operations">Corporate Finance / Financial Operations<span class="n">9</span></a><a href="#cat-regulatory-compliance">Regulatory &amp; Compliance<span class="n">6</span></a><a href="#cat-credit-rating-agencies">Credit Rating Agencies<span class="n">2</span></a><a href="#cat-central-banking-monetary-authorities">Central Banking / Monetary Authorities<span class="n">4</span></a><a href="#cat-microfinance-financial-inclusion">Microfinance / Financial Inclusion<span class="n">3</span></a></nav><p class="result-note" id="result-note" aria-live="polite"></p></div></div><div class="wrap cats"><details class="cat" id="cat-banking" open><summary><span class="cat-title">Banking</span><span class="count">14 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><div class="group" style="display:flex;flex-direction:column;gap:18px"><p class="group-label">Retail Banking</p><article class="proc" data-search="account opening &amp; onboarding  verifying customer identity and running kyc checks before an account is created. sets up the account and links initial funding sources. document verification and edge-case kyc review is manual and slows down onboarding."><div class="proc-head"><h3>Account Opening &amp; Onboarding</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Verifying customer identity and running KYC checks before an account is created. Sets up the account and links initial funding sources.</p><p class="pain"><b>Where it breaks</b>Document verification and edge-case KYC review is manual and slows down onboarding.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer submits application, ID documents] --&gt; B[Staff manually verifies identity documents]
+    B --&gt; C[KYC checks run against watchlists]
+    C --&gt; D{Checks pass?}
+    D --&gt;|Yes| E[Account created, funding source linked]
+    D --&gt;|No| F[Manual review by compliance officer]</pre></div></article><article class="proc" data-search="deposit management  administering checking and savings products, including interest accrual and account tiering. covers minimum balance rules and fee structures. tier/fee rule exceptions often require a service rep to manually waive or explain charges."><div class="proc-head"><h3>Deposit Management</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Administering checking and savings products, including interest accrual and account tiering. Covers minimum balance rules and fee structures.</p><p class="pain"><b>Where it breaks</b>Tier/fee rule exceptions often require a service rep to manually waive or explain charges.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer deposits funds] --&gt; B[System applies interest accrual rules]
+    B --&gt; C[Monthly balance checked against tier/fee thresholds]
+    C --&gt; D{Below minimum?}
+    D --&gt;|Yes| E[Fee applied, customer notified]
+    D --&gt;|No| F[No fee]</pre></div></article><article class="proc" data-search="consumer lending  originating and underwriting personal loans, auto loans, and credit card origination. includes credit decisioning and disbursement. borderline applications require manual underwriter judgment, slowing turnaround."><div class="proc-head"><h3>Consumer Lending</h3><div class="meta"><span class="steps">7-step flow</span></div><p class="desc">Originating and underwriting personal loans, auto loans, and credit card origination. Includes credit decisioning and disbursement.</p><p class="pain"><b>Where it breaks</b>Borderline applications require manual underwriter judgment, slowing turnaround.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer applies for loan/card] --&gt; B[Credit bureau pull]
+    B --&gt; C[Underwriter or automated model scores application]
+    C --&gt; D{Approved?}
+    D --&gt;|Yes| E[Terms offered, funds disbursed]
+    D --&gt;|Borderline| F[Manual underwriter review]
+    D --&gt;|No| G[Declined, adverse action notice sent]</pre></div></article><article class="proc" data-search="mortgage origination  taking a home loan application through underwriting to closing. coordinates appraisal, title, and closing logistics. coordinating appraisal, title, and underwriting across separate parties creates delays and back-and-forth."><div class="proc-head"><h3>Mortgage Origination</h3><div class="meta"><span class="steps">7-step flow</span></div><p class="desc">Taking a home loan application through underwriting to closing. Coordinates appraisal, title, and closing logistics.</p><p class="pain"><b>Where it breaks</b>Coordinating appraisal, title, and underwriting across separate parties creates delays and back-and-forth.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Application submitted with financial documents] --&gt; B[Documents verified manually]
+    B --&gt; C[Appraisal and title search ordered]
+    C --&gt; D[Underwriter reviews full file]
+    D --&gt; E{Approved?}
+    E --&gt;|Yes| F[Closing scheduled, documents signed]
+    E --&gt;|No| G[Declined or conditions requested]</pre></div></article><article class="proc" data-search="mortgage servicing  collecting ongoing payments and managing escrow for taxes and insurance. handles delinquency outreach and loss mitigation. loss mitigation case review is largely manual, and delays can worsen a borrower&#x27;s situation."><div class="proc-head"><h3>Mortgage Servicing</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Collecting ongoing payments and managing escrow for taxes and insurance. Handles delinquency outreach and loss mitigation.</p><p class="pain"><b>Where it breaks</b>Loss mitigation case review is largely manual, and delays can worsen a borrower&#x27;s situation.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Monthly payment collected] --&gt; B[Escrow account updated for taxes/insurance]
+    B --&gt; C{Payment missed?}
+    C --&gt;|Yes| D[Delinquency outreach begins]
+    C --&gt;|No| E[Standard servicing continues]
+    D --&gt; F[Loss mitigation options evaluated manually]</pre></div></article><article class="proc" data-search="branch &amp; atm operations  running physical cash handling, teller transactions, and atm cash replenishment. includes branch staffing and vault management. atm cash forecasting is often reactive, leading to occasional stockouts or excess idle cash."><div class="proc-head"><h3>Branch &amp; ATM Operations</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Running physical cash handling, teller transactions, and ATM cash replenishment. Includes branch staffing and vault management.</p><p class="pain"><b>Where it breaks</b>ATM cash forecasting is often reactive, leading to occasional stockouts or excess idle cash.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Teller processes in-branch transaction] --&gt; B[Cash drawer balanced at shift end]
+    B --&gt; C[Branch cash levels monitored]
+    C --&gt; D{ATM running low?}
+    D --&gt;|Yes| E[Cash replenishment scheduled manually]
+    D --&gt;|No| F[No action]</pre></div></article><article class="proc" data-search="digital/mobile banking  providing online account access, mobile check deposit, and bill pay. covers app-based authentication and transaction alerts. unusual-activity flags often require a human review step that delays legitimate transactions too."><div class="proc-head"><h3>Digital/Mobile Banking</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Providing online account access, mobile check deposit, and bill pay. Covers app-based authentication and transaction alerts.</p><p class="pain"><b>Where it breaks</b>Unusual-activity flags often require a human review step that delays legitimate transactions too.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer logs into app] --&gt; B[Authentication verified]
+    B --&gt; C[Customer initiates transfer/deposit/bill pay]
+    C --&gt; D{Flagged as unusual?}
+    D --&gt;|Yes| E[Manual fraud review before processing]
+    D --&gt;|No| F[Transaction processed]</pre></div></article></div><div class="group" style="display:flex;flex-direction:column;gap:18px"><p class="group-label">Commercial &amp; Corporate Banking</p><article class="proc" data-search="business lending  originating term loans, revolving credit lines, and sba-backed loans for businesses. includes covenant setting and ongoing credit monitoring. covenant compliance monitoring is often a manual, periodic spreadsheet review rather than continuous."><div class="proc-head"><h3>Business Lending</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Originating term loans, revolving credit lines, and SBA-backed loans for businesses. Includes covenant setting and ongoing credit monitoring.</p><p class="pain"><b>Where it breaks</b>Covenant compliance monitoring is often a manual, periodic spreadsheet review rather than continuous.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Business submits loan application and financials] --&gt; B[Credit analyst reviews financial statements]
+    B --&gt; C[Covenants and terms drafted]
+    C --&gt; D[Loan committee approval]
+    D --&gt; E[Funds disbursed]
+    E --&gt; F[Ongoing covenant compliance checked periodically]</pre></div></article><article class="proc" data-search="cash management services  providing treasury tools like sweep accounts and lockbox processing to business clients. helps clients optimize working capital. initial setup and rule changes usually require a manual configuration request to the bank."><div class="proc-head"><h3>Cash Management Services</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Providing treasury tools like sweep accounts and lockbox processing to business clients. Helps clients optimize working capital.</p><p class="pain"><b>Where it breaks</b>Initial setup and rule changes usually require a manual configuration request to the bank.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Client enrolls in cash management product] --&gt; B[Sweep rules configured manually]
+    B --&gt; C[Lockbox payments received and processed]
+    C --&gt; D[Funds swept per configured rules]</pre></div></article><article class="proc" data-search="trade finance  issuing letters of credit and documentary collections to support cross-border trade. also covers supply chain finance and export credit. manual document matching against lc terms is slow and a common source of trade delays."><div class="proc-head"><h3>Trade Finance</h3><div class="meta"><span class="steps">7-step flow</span></div><p class="desc">Issuing letters of credit and documentary collections to support cross-border trade. Also covers supply chain finance and export credit.</p><p class="pain"><b>Where it breaks</b>Manual document matching against LC terms is slow and a common source of trade delays.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Importer requests letter of credit] --&gt; B[Bank reviews and issues LC]
+    B --&gt; C[Exporter ships goods, submits documents]
+    C --&gt; D[Bank manually checks documents against LC terms]
+    D --&gt; E{Documents match?}
+    E --&gt;|Yes| F[Payment released]
+    E --&gt;|No| G[Discrepancy resolution process]</pre></div></article><article class="proc" data-search="syndicated lending  structuring large loans funded jointly by multiple banks. involves negotiating terms and allocating risk across lenders. coordinating terms and documentation across many participating banks is a slow, manual negotiation process."><div class="proc-head"><h3>Syndicated Lending</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Structuring large loans funded jointly by multiple banks. Involves negotiating terms and allocating risk across lenders.</p><p class="pain"><b>Where it breaks</b>Coordinating terms and documentation across many participating banks is a slow, manual negotiation process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Lead arranger structures loan terms] --&gt; B[Other banks invited to participate]
+    B --&gt; C[Negotiation and allocation of shares]
+    C --&gt; D[Loan documentation finalized]
+    D --&gt; E[Funds disbursed, ongoing syndicate reporting]</pre></div></article><article class="proc" data-search="corporate treasury services  managing liquidity and fx/interest-rate hedging for large corporate clients. includes cash pooling across subsidiaries. exposure monitoring and reporting is often periodic rather than continuous."><div class="proc-head"><h3>Corporate Treasury Services</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Managing liquidity and FX/interest-rate hedging for large corporate clients. Includes cash pooling across subsidiaries.</p><p class="pain"><b>Where it breaks</b>Exposure monitoring and reporting is often periodic rather than continuous.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Client treasury team requests hedge/pooling arrangement] --&gt; B[Bank structures the instrument]
+    B --&gt; C[Ongoing monitoring of exposure]
+    C --&gt; D[Periodic manual reporting to client]</pre></div></article></div><div class="group" style="display:flex;flex-direction:column;gap:18px"><p class="group-label">Private Banking</p><article class="proc" data-search="relationship management  providing dedicated advisory and concierge banking to high-net-worth clients. coordinates across lending, investing, and daily banking needs. coordinating across internal specialist teams for one client is manual and relationship-manager-dependent."><div class="proc-head"><h3>Relationship Management</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Providing dedicated advisory and concierge banking to high-net-worth clients. Coordinates across lending, investing, and daily banking needs.</p><p class="pain"><b>Where it breaks</b>Coordinating across internal specialist teams for one client is manual and relationship-manager-dependent.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Relationship manager reviews client portfolio] --&gt; B[Identifies needs across banking/lending/investing]
+    B --&gt; C[Coordinates internally with specialist teams]
+    C --&gt; D[Recommendations presented to client]</pre></div></article><article class="proc" data-search="estate &amp; trust services  structuring wealth transfer plans and administering trusts. coordinates with legal counsel on succession planning. drafting and coordinating with outside legal counsel is a slow, document-heavy process."><div class="proc-head"><h3>Estate &amp; Trust Services</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Structuring wealth transfer plans and administering trusts. Coordinates with legal counsel on succession planning.</p><p class="pain"><b>Where it breaks</b>Drafting and coordinating with outside legal counsel is a slow, document-heavy process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Client meets with advisor on estate goals] --&gt; B[Trust structure drafted with legal counsel]
+    B --&gt; C[Trust established and funded]
+    C --&gt; D[Ongoing trust administration and reporting]</pre></div></article></div></div></details><details class="cat" id="cat-investment-banking-capital-markets"><summary><span class="cat-title">Investment Banking &amp; Capital Markets</span><span class="count">6 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="m&amp;a advisory  identifying acquisition targets and structuring merger or divestiture deals. includes valuation modeling and negotiation support. valuation modeling is rebuilt largely from scratch for each deal in spreadsheets."><div class="proc-head"><h3>M&amp;A Advisory</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Identifying acquisition targets and structuring merger or divestiture deals. Includes valuation modeling and negotiation support.</p><p class="pain"><b>Where it breaks</b>Valuation modeling is rebuilt largely from scratch for each deal in spreadsheets.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Banker identifies potential targets/buyers] --&gt; B[Valuation models built manually]
+    B --&gt; C[Pitch presented to client]
+    C --&gt; D[Negotiation and deal structuring]
+    D --&gt; E[Deal closes]</pre></div></article><article class="proc" data-search="equity capital markets  preparing companies for ipos, running investor roadshows, and pricing share offerings. manages the allocation process among institutional buyers. building and managing the order book during a roadshow is a manually intensive, time-pressured process."><div class="proc-head"><h3>Equity Capital Markets</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Preparing companies for IPOs, running investor roadshows, and pricing share offerings. Manages the allocation process among institutional buyers.</p><p class="pain"><b>Where it breaks</b>Building and managing the order book during a roadshow is a manually intensive, time-pressured process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Company prepares for IPO with bank&#x27;s help] --&gt; B[Roadshow conducted with investors]
+    B --&gt; C[Order book built manually]
+    C --&gt; D[Pricing decided]
+    D --&gt; E[Shares allocated to investors]</pre></div></article><article class="proc" data-search="debt capital markets  structuring bond issuances and coordinating with credit rating agencies. determines pricing and investor placement for new debt. coordinating timing between rating agency review and investor marketing is a manual scheduling challenge."><div class="proc-head"><h3>Debt Capital Markets</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Structuring bond issuances and coordinating with credit rating agencies. Determines pricing and investor placement for new debt.</p><p class="pain"><b>Where it breaks</b>Coordinating timing between rating agency review and investor marketing is a manual scheduling challenge.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Issuer decides to raise debt] --&gt; B[Bank structures bond terms]
+    B --&gt; C[Credit rating agency engaged for rating]
+    C --&gt; D[Bond marketed to investors]
+    D --&gt; E[Pricing set, bonds allocated]</pre></div></article><article class="proc" data-search="sales &amp; trading  executing client orders and making markets in equities, fixed income, fx, and derivatives. includes proprietary trading within risk limits. some risk limit checks still happen post-trade rather than pre-trade, creating exposure windows."><div class="proc-head"><h3>Sales &amp; Trading</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Executing client orders and making markets in equities, fixed income, FX, and derivatives. Includes proprietary trading within risk limits.</p><p class="pain"><b>Where it breaks</b>Some risk limit checks still happen post-trade rather than pre-trade, creating exposure windows.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Client submits order] --&gt; B[Trader/algorithm assesses market conditions]
+    B --&gt; C[Order executed]
+    C --&gt; D[Trade confirmed and booked]
+    D --&gt; E[Risk limits checked post-trade]</pre></div></article><article class="proc" data-search="research  producing equity, credit, and macro research for institutional clients. publishes ratings and price targets that inform trading decisions. financial model updates for each new data point (earnings, guidance) are manually rebuilt."><div class="proc-head"><h3>Research</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Producing equity, credit, and macro research for institutional clients. Publishes ratings and price targets that inform trading decisions.</p><p class="pain"><b>Where it breaks</b>Financial model updates for each new data point (earnings, guidance) are manually rebuilt.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Analyst gathers company/market data] --&gt; B[Builds financial model manually]
+    B --&gt; C[Drafts report with rating/price target]
+    C --&gt; D[Compliance review before publication]
+    D --&gt; E[Report distributed to clients]</pre></div></article><article class="proc" data-search="securities settlement  confirming trade details and ensuring securities and cash change hands correctly. coordinates with clearinghouses and custodians. settlement &quot;breaks&quot; (mismatches) require manual investigation and resolution, often under time pressure."><div class="proc-head"><h3>Securities Settlement</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Confirming trade details and ensuring securities and cash change hands correctly. Coordinates with clearinghouses and custodians.</p><p class="pain"><b>Where it breaks</b>Settlement &quot;breaks&quot; (mismatches) require manual investigation and resolution, often under time pressure.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Trade executed] --&gt; B[Trade details confirmed between parties]
+    B --&gt; C[Sent to clearinghouse for netting]
+    C --&gt; D{Discrepancy found?}
+    D --&gt;|Yes| E[Manual break resolution]
+    D --&gt;|No| F[Settlement completes]</pre></div></article></div></details><details class="cat" id="cat-asset-wealth-management"><summary><span class="cat-title">Asset &amp; Wealth Management</span><span class="count">8 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="portfolio management  deciding asset allocation and selecting individual securities for client portfolios. includes ongoing rebalancing against target allocations. drift monitoring and rebalancing decisions are often made on a periodic schedule rather than continuously."><div class="proc-head"><h3>Portfolio Management</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Deciding asset allocation and selecting individual securities for client portfolios. Includes ongoing rebalancing against target allocations.</p><p class="pain"><b>Where it breaks</b>Drift monitoring and rebalancing decisions are often made on a periodic schedule rather than continuously.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Portfolio manager reviews target allocation] --&gt; B[Market analysis informs security selection]
+    B --&gt; C[Trades placed to rebalance]
+    C --&gt; D[Portfolio drift monitored periodically]</pre></div></article><article class="proc" data-search="fund administration  calculating daily net asset value (nav) and producing investor statements. ensures accurate accounting across fund structures. reconciling nav calculations against custodian records daily is a manual, error-prone checkpoint."><div class="proc-head"><h3>Fund Administration</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Calculating daily net asset value (NAV) and producing investor statements. Ensures accurate accounting across fund structures.</p><p class="pain"><b>Where it breaks</b>Reconciling NAV calculations against custodian records daily is a manual, error-prone checkpoint.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Daily fund holdings and prices collected] --&gt; B[NAV calculated manually or semi-automated]
+    B --&gt; C[Reconciled against custodian records]
+    C --&gt; D[Investor statements generated]</pre></div></article><article class="proc" data-search="custody &amp; fund services  safekeeping client assets and handling transfer agency functions like unit registration. supports settlement of fund purchases and redemptions. transfer agency processing still relies heavily on manual paperwork for many fund types."><div class="proc-head"><h3>Custody &amp; Fund Services</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Safekeeping client assets and handling transfer agency functions like unit registration. Supports settlement of fund purchases and redemptions.</p><p class="pain"><b>Where it breaks</b>Transfer agency processing still relies heavily on manual paperwork for many fund types.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Investor submits purchase/redemption request] --&gt; B[Transfer agent processes request manually]
+    B --&gt; C[Units registered/deregistered]
+    C --&gt; D[Custodian updates asset records]</pre></div></article><article class="proc" data-search="alternative investments  allocating client capital to private equity, hedge funds, and real assets. requires specialized due diligence beyond public markets. due diligence on illiquid, opaque alternative investments is time-intensive and document-heavy."><div class="proc-head"><h3>Alternative Investments</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Allocating client capital to private equity, hedge funds, and real assets. Requires specialized due diligence beyond public markets.</p><p class="pain"><b>Where it breaks</b>Due diligence on illiquid, opaque alternative investments is time-intensive and document-heavy.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Advisor evaluates alternative fund opportunities] --&gt; B[Extensive manual due diligence conducted]
+    B --&gt; C[Investment committee approval]
+    C --&gt; D[Capital committed to the fund]</pre></div></article><article class="proc" data-search="robo-advisory  delivering algorithm-driven, low-cost portfolio management with minimal human advisor involvement. rebalances automatically based on a client&#x27;s risk profile. edge cases (unusual client circumstances) still require escalation to a human, breaking the automated flow."><div class="proc-head"><h3>Robo-Advisory</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Delivering algorithm-driven, low-cost portfolio management with minimal human advisor involvement. Rebalances automatically based on a client&#x27;s risk profile.</p><p class="pain"><b>Where it breaks</b>Edge cases (unusual client circumstances) still require escalation to a human, breaking the automated flow.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Client completes risk questionnaire] --&gt; B[Algorithm assigns model portfolio]
+    B --&gt; C[Portfolio automatically rebalanced periodically]
+    C --&gt; D[Client can escalate to human advisor if needed]</pre></div></article><article class="proc" data-search="client onboarding &amp; advisory  profiling client risk tolerance and building a financial plan. sets the investment policy that guides ongoing portfolio decisions. building a financial plan is a manual, advisor-time-intensive process for each client."><div class="proc-head"><h3>Client Onboarding &amp; Advisory</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Profiling client risk tolerance and building a financial plan. Sets the investment policy that guides ongoing portfolio decisions.</p><p class="pain"><b>Where it breaks</b>Building a financial plan is a manual, advisor-time-intensive process for each client.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Advisor meets with client] --&gt; B[Risk tolerance and goals assessed manually]
+    B --&gt; C[Financial plan drafted]
+    C --&gt; D[Investment policy statement created]</pre></div></article><article class="proc" data-search="compliance &amp; reporting  filing required regulatory disclosures such as form adv. maintains records demonstrating adherence to fiduciary standards. gathering data from multiple internal systems for each filing is manual and time-consuming."><div class="proc-head"><h3>Compliance &amp; Reporting</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Filing required regulatory disclosures such as Form ADV. Maintains records demonstrating adherence to fiduciary standards.</p><p class="pain"><b>Where it breaks</b>Gathering data from multiple internal systems for each filing is manual and time-consuming.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Compliance team gathers required disclosure data] --&gt; B[Filing drafted manually]
+    B --&gt; C[Internal review and sign-off]
+    C --&gt; D[Filed with regulator]</pre></div></article><article class="proc" data-search="performance attribution  breaking down portfolio returns into the specific decisions that drove them. helps distinguish skill from market movement. attribution analysis is often done after the fact in spreadsheets, not integrated into daily decision-making."><div class="proc-head"><h3>Performance Attribution</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Breaking down portfolio returns into the specific decisions that drove them. Helps distinguish skill from market movement.</p><p class="pain"><b>Where it breaks</b>Attribution analysis is often done after the fact in spreadsheets, not integrated into daily decision-making.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Portfolio returns pulled for period] --&gt; B[Analyst decomposes returns by factor/decision]
+    B --&gt; C[Attribution report drafted]
+    C --&gt; D[Reviewed with portfolio manager]</pre></div></article></div></details><details class="cat" id="cat-insurance"><summary><span class="cat-title">Insurance</span><span class="count">6 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="underwriting  assessing risk on a proposed policy and setting its price. decides whether to accept, decline, or modify coverage terms. non-standard risk cases require significant manual underwriter judgment and back-and-forth for more information."><div class="proc-head"><h3>Underwriting</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Assessing risk on a proposed policy and setting its price. Decides whether to accept, decline, or modify coverage terms.</p><p class="pain"><b>Where it breaks</b>Non-standard risk cases require significant manual underwriter judgment and back-and-forth for more information.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Applicant submits information] --&gt; B[Underwriter reviews risk factors]
+    B --&gt; C{Standard risk?}
+    C --&gt;|Yes| D[Policy priced and issued]
+    C --&gt;|No| E[Manual review, possible additional underwriting]</pre></div></article><article class="proc" data-search="claims processing  handling a policyholder&#x27;s loss from first notice through investigation to settlement. determines payout amount based on policy terms. investigation and document gathering is manual and often the slowest part of the claims cycle."><div class="proc-head"><h3>Claims Processing</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Handling a policyholder&#x27;s loss from first notice through investigation to settlement. Determines payout amount based on policy terms.</p><p class="pain"><b>Where it breaks</b>Investigation and document gathering is manual and often the slowest part of the claims cycle.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Policyholder reports loss - FNOL] --&gt; B[Claims adjuster assigned]
+    B --&gt; C[Investigation conducted, documents gathered]
+    C --&gt; D[Payout amount determined against policy terms]
+    D --&gt; E[Settlement issued]</pre></div></article><article class="proc" data-search="policy administration  managing renewals, mid-term endorsements, and cancellations. keeps policy records accurate throughout the coverage period. mid-term endorsement processing often requires manual recalculation and reissuance of documents."><div class="proc-head"><h3>Policy Administration</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Managing renewals, mid-term endorsements, and cancellations. Keeps policy records accurate throughout the coverage period.</p><p class="pain"><b>Where it breaks</b>Mid-term endorsement processing often requires manual recalculation and reissuance of documents.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Policyholder requests change or renewal approaches] --&gt; B[Administrator manually updates policy record]
+    B --&gt; C[Premium recalculated if needed]
+    C --&gt; D[Updated documents issued to policyholder]</pre></div></article><article class="proc" data-search="actuarial  calculating reserves needed to cover future claims and building pricing models. underpins both underwriting and financial reporting. model updates as new claims data arrives are periodic, not continuous."><div class="proc-head"><h3>Actuarial</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Calculating reserves needed to cover future claims and building pricing models. Underpins both underwriting and financial reporting.</p><p class="pain"><b>Where it breaks</b>Model updates as new claims data arrives are periodic, not continuous.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Historical claims data gathered] --&gt; B[Actuary builds reserve/pricing models]
+    B --&gt; C[Models reviewed and validated]
+    C --&gt; D[Results feed underwriting and financial reporting]</pre></div></article><article class="proc" data-search="reinsurance  ceding risk to other insurers to limit exposure, or assuming risk from others. spreads catastrophic risk across the broader insurance market. treaty negotiation and claims-sharing calculations are manual and document-intensive."><div class="proc-head"><h3>Reinsurance</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Ceding risk to other insurers to limit exposure, or assuming risk from others. Spreads catastrophic risk across the broader insurance market.</p><p class="pain"><b>Where it breaks</b>Treaty negotiation and claims-sharing calculations are manual and document-intensive.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Insurer identifies risk exposure to cede] --&gt; B[Reinsurance treaty negotiated]
+    B --&gt; C[Risk ceded per treaty terms]
+    C --&gt; D[Claims shared per agreement when triggered]</pre></div></article><article class="proc" data-search="distribution &amp; broker management  onboarding agents and brokers and managing their commission structures. oversees the sales channel that brings in new policies. verifying broker licensing across multiple states/regions is a manual compliance check."><div class="proc-head"><h3>Distribution &amp; Broker Management</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Onboarding agents and brokers and managing their commission structures. Oversees the sales channel that brings in new policies.</p><p class="pain"><b>Where it breaks</b>Verifying broker licensing across multiple states/regions is a manual compliance check.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Broker applies to sell insurer&#x27;s products] --&gt; B[Manual licensing/compliance verification]
+    B --&gt; C[Broker onboarded, commission structure set]
+    C --&gt; D[Ongoing commission tracking and payment]</pre></div></article></div></details><details class="cat" id="cat-payments-fintech"><summary><span class="cat-title">Payments &amp; Fintech</span><span class="count">6 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="payment authorization &amp; settlement  approving a transaction in real time and moving funds between accounts. involves multiple intermediaries clearing in the background. final settlement often happens in batch cycles well after the &quot;instant&quot; approval the customer sees."><div class="proc-head"><h3>Payment Authorization &amp; Settlement</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Approving a transaction in real time and moving funds between accounts. Involves multiple intermediaries clearing in the background.</p><p class="pain"><b>Where it breaks</b>Final settlement often happens in batch cycles well after the &quot;instant&quot; approval the customer sees.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Transaction initiated] --&gt; B[Authorization request sent through network]
+    B --&gt; C{Approved?}
+    C --&gt;|Yes| D[Funds move between accounts]
+    C --&gt;|No| E[Transaction declined]
+    D --&gt; F[Settlement finalized in batch later]</pre></div></article><article class="proc" data-search="card issuing &amp; acquiring  issuing payment cards on behalf of banks and onboarding merchants to accept them. sits on both sides of a card transaction. merchant underwriting for risk (especially small/new merchants) is a manual review process."><div class="proc-head"><h3>Card Issuing &amp; Acquiring</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Issuing payment cards on behalf of banks and onboarding merchants to accept them. Sits on both sides of a card transaction.</p><p class="pain"><b>Where it breaks</b>Merchant underwriting for risk (especially small/new merchants) is a manual review process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Bank partners with issuer processor] --&gt; B[Cards issued to customers]
+    B --&gt; C[Merchant applies to accept cards]
+    C --&gt; D[Merchant underwritten and onboarded]</pre></div></article><article class="proc" data-search="digital wallets &amp; stored value  managing app-based accounts that hold funds for spending or transfer. includes linking bank accounts and cards to the wallet. linking and verifying external bank accounts still often requires manual micro-deposit verification."><div class="proc-head"><h3>Digital Wallets &amp; Stored Value</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Managing app-based accounts that hold funds for spending or transfer. Includes linking bank accounts and cards to the wallet.</p><p class="pain"><b>Where it breaks</b>Linking and verifying external bank accounts still often requires manual micro-deposit verification.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[User creates wallet account] --&gt; B[Links bank account or card]
+    B --&gt; C[Funds loaded or received]
+    C --&gt; D[User spends or transfers from wallet balance]</pre></div></article><article class="proc" data-search="buy now, pay later processing  underwriting short-term installment purchases at checkout. manages repayment scheduling and delinquency. delinquency handling at scale (many small missed payments) still needs manual escalation paths."><div class="proc-head"><h3>Buy Now, Pay Later Processing</h3><div class="meta"><span class="steps">7-step flow</span></div><p class="desc">Underwriting short-term installment purchases at checkout. Manages repayment scheduling and delinquency.</p><p class="pain"><b>Where it breaks</b>Delinquency handling at scale (many small missed payments) still needs manual escalation paths.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer selects BNPL at checkout] --&gt; B[Instant underwriting decision made]
+    B --&gt; C{Approved?}
+    C --&gt;|Yes| D[Installment schedule set]
+    C --&gt;|No| E[Declined, alternative payment offered]
+    D --&gt; F{Payment missed?}
+    F --&gt;|Yes| G[Delinquency workflow triggered]</pre></div></article><article class="proc" data-search="fraud detection &amp; prevention  monitoring transactions in real time for suspicious patterns. balances blocking fraud against not disrupting legitimate purchases. manual review of flagged transactions creates delay and can wrongly block legitimate customers."><div class="proc-head"><h3>Fraud Detection &amp; Prevention</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Monitoring transactions in real time for suspicious patterns. Balances blocking fraud against not disrupting legitimate purchases.</p><p class="pain"><b>Where it breaks</b>Manual review of flagged transactions creates delay and can wrongly block legitimate customers.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Transaction scored by fraud model] --&gt; B{Score above threshold?}
+    B --&gt;|Yes| C[Transaction held or declined]
+    B --&gt;|No| D[Transaction proceeds]
+    C --&gt; E[Analyst manually reviews flagged case]</pre></div></article><article class="proc" data-search="cross-border remittance processing  converting currency and moving funds internationally for individuals. requires compliance checks specific to each corridor. routing through multiple correspondent banks in some corridors adds delay and manual reconciliation."><div class="proc-head"><h3>Cross-Border Remittance Processing</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Converting currency and moving funds internationally for individuals. Requires compliance checks specific to each corridor.</p><p class="pain"><b>Where it breaks</b>Routing through multiple correspondent banks in some corridors adds delay and manual reconciliation.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Sender initiates transfer] --&gt; B[Compliance screening for corridor-specific rules]
+    B --&gt; C[Currency converted]
+    C --&gt; D[Funds routed through correspondent network]
+    D --&gt; E[Recipient receives funds]</pre></div></article></div></details><details class="cat" id="cat-financial-market-infrastructure"><summary><span class="cat-title">Financial Market Infrastructure</span><span class="count">3 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="exchange operations  running the matching engine that pairs buy and sell orders. also distributes real-time market data to participants. while matching itself is automated, exception handling for erroneous trades still requires manual intervention."><div class="proc-head"><h3>Exchange Operations</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Running the matching engine that pairs buy and sell orders. Also distributes real-time market data to participants.</p><p class="pain"><b>Where it breaks</b>While matching itself is automated, exception handling for erroneous trades still requires manual intervention.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Orders submitted by market participants] --&gt; B[Matching engine pairs buy/sell orders]
+    B --&gt; C[Trade executed]
+    C --&gt; D[Market data disseminated to participants]</pre></div></article><article class="proc" data-search="clearing &amp; settlement  guaranteeing that trades complete even if one party defaults. nets offsetting positions to reduce settlement volume. margin calls during volatile periods can require manual coordination with participants under time pressure."><div class="proc-head"><h3>Clearing &amp; Settlement</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Guaranteeing that trades complete even if one party defaults. Nets offsetting positions to reduce settlement volume.</p><p class="pain"><b>Where it breaks</b>Margin calls during volatile periods can require manual coordination with participants under time pressure.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Trade sent to clearinghouse] --&gt; B[Positions netted across participants]
+    B --&gt; C[Margin requirements calculated]
+    C --&gt; D[Settlement instructions issued]</pre></div></article><article class="proc" data-search="custody &amp; depository services  holding securities electronically on behalf of institutional owners. supports the final leg of trade settlement. corporate action processing across many issuers is still manually intensive to track and apply correctly."><div class="proc-head"><h3>Custody &amp; Depository Services</h3><div class="meta"><span class="steps">3-step flow</span></div><p class="desc">Holding securities electronically on behalf of institutional owners. Supports the final leg of trade settlement.</p><p class="pain"><b>Where it breaks</b>Corporate action processing across many issuers is still manually intensive to track and apply correctly.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Securities registered in depository] --&gt; B[Ownership records updated on trade settlement]
+    B --&gt; C[Corporate actions (dividends, splits) processed]</pre></div></article></div></details><details class="cat" id="cat-private-equity-venture-capital"><summary><span class="cat-title">Private Equity &amp; Venture Capital</span><span class="count">4 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="fundraising  raising committed capital from institutional and high-net-worth investors. involves ongoing investor relations throughout the fund&#x27;s life. responding to each investor&#x27;s due diligence questionnaire is a largely manual, repetitive process."><div class="proc-head"><h3>Fundraising</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Raising committed capital from institutional and high-net-worth investors. Involves ongoing investor relations throughout the fund&#x27;s life.</p><p class="pain"><b>Where it breaks</b>Responding to each investor&#x27;s due diligence questionnaire is a largely manual, repetitive process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Fund manager creates pitch materials] --&gt; B[Investor meetings conducted]
+    B --&gt; C[Due diligence by investors]
+    C --&gt; D[Capital commitments signed]</pre></div></article><article class="proc" data-search="deal sourcing &amp; due diligence  identifying acquisition targets and evaluating their financial, legal, and commercial health. determines whether and at what price to invest. diligence involves manually reviewing large volumes of financial and legal documents."><div class="proc-head"><h3>Deal Sourcing &amp; Due Diligence</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Identifying acquisition targets and evaluating their financial, legal, and commercial health. Determines whether and at what price to invest.</p><p class="pain"><b>Where it breaks</b>Diligence involves manually reviewing large volumes of financial and legal documents.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Deal team identifies target company] --&gt; B[Financial, legal, commercial diligence conducted]
+    B --&gt; C[Investment committee review]
+    C --&gt; D{Approved?}
+    D --&gt;|Yes| E[Deal negotiated and closed]
+    D --&gt;|No| F[Deal passed on]</pre></div></article><article class="proc" data-search="portfolio company management  working with portfolio companies to improve operations and governance. often includes board seats and operating-partner involvement. performance tracking across a portfolio of companies is often manual and inconsistent between companies."><div class="proc-head"><h3>Portfolio Company Management</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Working with portfolio companies to improve operations and governance. Often includes board seats and operating-partner involvement.</p><p class="pain"><b>Where it breaks</b>Performance tracking across a portfolio of companies is often manual and inconsistent between companies.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Operating partner reviews portfolio company performance] --&gt; B[Improvement initiatives identified]
+    B --&gt; C[Board oversight and governance support provided]
+    C --&gt; D[Performance tracked periodically]</pre></div></article><article class="proc" data-search="exit planning  preparing a portfolio company for sale, ipo, or recapitalization. times the exit to maximize investor returns. preparing the extensive documentation needed for an exit process is manual and time-consuming."><div class="proc-head"><h3>Exit Planning</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Preparing a portfolio company for sale, IPO, or recapitalization. Times the exit to maximize investor returns.</p><p class="pain"><b>Where it breaks</b>Preparing the extensive documentation needed for an exit process is manual and time-consuming.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Fund evaluates exit readiness and market conditions] --&gt; B[Exit process chosen: sale, IPO, recap]
+    B --&gt; C[Advisors engaged, process run]
+    C --&gt; D[Exit completed, proceeds distributed]</pre></div></article></div></details><details class="cat" id="cat-corporate-finance-financial-operations"><summary><span class="cat-title">Corporate Finance / Financial Operations</span><span class="count">9 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="accounts payable  invoice receipt, 3-way matching, approval routing, payment execution, vendor management. matching exceptions require someone to manually trace back through po and receiving records."><div class="proc-head"><h3>Accounts Payable</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Invoice receipt, 3-way matching, approval routing, payment execution, vendor management.</p><p class="pain"><b>Where it breaks</b>Matching exceptions require someone to manually trace back through PO and receiving records.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Invoice received from vendor] --&gt; B[3-way match: PO, receipt, invoice]
+    B --&gt; C{Match successful?}
+    C --&gt;|Yes| D[Routed for approval]
+    C --&gt;|No| E[Exception investigated manually]
+    D --&gt; F[Payment executed]</pre></div></article><article class="proc" data-search="accounts receivable  invoicing, collections, cash application, dispute resolution. unmatched payments require manual research to identify which invoice they belong to."><div class="proc-head"><h3>Accounts Receivable</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Invoicing, collections, cash application, dispute resolution.</p><p class="pain"><b>Where it breaks</b>Unmatched payments require manual research to identify which invoice they belong to.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Invoice issued to customer] --&gt; B[Payment received]
+    B --&gt; C[Cash application: match payment to invoice]
+    C --&gt; D{Match found?}
+    D --&gt;|Yes| E[Invoice closed]
+    D --&gt;|No| F[Manual investigation/dispute resolution]</pre></div></article><article class="proc" data-search="financial close &amp; reporting  month-end close, journal entries, consolidation, external reporting. reconciliation across many accounts and entities is manual and is usually the close&#x27;s biggest bottleneck."><div class="proc-head"><h3>Financial Close &amp; Reporting</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Month-end close, journal entries, consolidation, external reporting.</p><p class="pain"><b>Where it breaks</b>Reconciliation across many accounts and entities is manual and is usually the close&#x27;s biggest bottleneck.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Sub-ledgers closed for the period] --&gt; B[Journal entries prepared and reviewed]
+    B --&gt; C[Accounts reconciled]
+    C --&gt; D[Consolidation across entities]
+    D --&gt; E[External report finalized]</pre></div></article><article class="proc" data-search="fp&amp;a  budgeting, forecasting, variance analysis, board reporting. chasing department heads for variance explanations each cycle is manual and slow."><div class="proc-head"><h3>FP&amp;A</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Budgeting, forecasting, variance analysis, board reporting.</p><p class="pain"><b>Where it breaks</b>Chasing department heads for variance explanations each cycle is manual and slow.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Prior actuals and assumptions gathered] --&gt; B[Budget/forecast built in spreadsheets]
+    B --&gt; C[Actuals compared to forecast]
+    C --&gt; D[Variance explanations gathered from department heads]
+    D --&gt; E[Board report compiled]</pre></div></article><article class="proc" data-search="treasury  cash positioning, liquidity forecasting, bank relationship management, fx/interest-rate hedging. consolidating cash positions across many bank accounts/entities is a manual daily task."><div class="proc-head"><h3>Treasury</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Cash positioning, liquidity forecasting, bank relationship management, FX/interest-rate hedging.</p><p class="pain"><b>Where it breaks</b>Consolidating cash positions across many bank accounts/entities is a manual daily task.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Cash balances pulled from multiple bank accounts] --&gt; B[Position consolidated manually]
+    B --&gt; C[Liquidity forecast built]
+    C --&gt; D[Hedging decisions made if needed]</pre></div></article><article class="proc" data-search="payroll  time &amp; attendance, payroll processing, tax withholding, benefits administration. time &amp; attendance exceptions (missed clock-ins, overtime disputes) require manual review each cycle."><div class="proc-head"><h3>Payroll</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Time &amp; attendance, payroll processing, tax withholding, benefits administration.</p><p class="pain"><b>Where it breaks</b>Time &amp; attendance exceptions (missed clock-ins, overtime disputes) require manual review each cycle.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Time &amp; attendance data collected] --&gt; B[Exceptions reviewed manually]
+    B --&gt; C[Payroll calculated: wages, tax withholding, benefits]
+    C --&gt; D[Payroll approved and disbursed]</pre></div></article><article class="proc" data-search="procurement  vendor sourcing, purchase order management, contract management. contract renewal dates tracked manually are often missed, leading to unfavorable auto-renewals."><div class="proc-head"><h3>Procurement</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Vendor sourcing, purchase order management, contract management.</p><p class="pain"><b>Where it breaks</b>Contract renewal dates tracked manually are often missed, leading to unfavorable auto-renewals.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Need identified, vendor sourced] --&gt; B[Purchase order created]
+    B --&gt; C[Approval routing based on amount]
+    C --&gt; D[PO sent to vendor]
+    D --&gt; E[Contract terms tracked for renewal]</pre></div></article><article class="proc" data-search="tax  compliance filing, tax provision, transfer pricing. gathering data across international entities for transfer pricing documentation is a manual, time-intensive process."><div class="proc-head"><h3>Tax</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Compliance filing, tax provision, transfer pricing.</p><p class="pain"><b>Where it breaks</b>Gathering data across international entities for transfer pricing documentation is a manual, time-intensive process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Financial data gathered for tax period] --&gt; B[Tax provision calculated]
+    B --&gt; C[Returns prepared and reviewed]
+    C --&gt; D[Filed with tax authorities]</pre></div></article><article class="proc" data-search="internal audit &amp; controls  sox compliance, control testing. manual sampling means many transactions are never actually tested."><div class="proc-head"><h3>Internal Audit &amp; Controls</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">SOX compliance, control testing.</p><p class="pain"><b>Where it breaks</b>Manual sampling means many transactions are never actually tested.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Audit plan defines controls to test] --&gt; B[Auditor samples transactions manually]
+    B --&gt; C[Control gaps identified]
+    C --&gt; D[Remediation plan tracked]</pre></div></article></div></details><details class="cat" id="cat-regulatory-compliance"><summary><span class="cat-title">Regulatory &amp; Compliance</span><span class="count">6 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="aml/kyc  customer due diligence, transaction monitoring, suspicious activity reporting. rules-based monitoring generates many false positives that still require manual analyst review."><div class="proc-head"><h3>AML/KYC</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Customer due diligence, transaction monitoring, suspicious activity reporting.</p><p class="pain"><b>Where it breaks</b>Rules-based monitoring generates many false positives that still require manual analyst review.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer transactions monitored against rules] --&gt; B{Suspicious pattern flagged?}
+    B --&gt;|Yes| C[Analyst manually investigates]
+    B --&gt;|No| D[No action]
+    C --&gt; E{Confirmed suspicious?}
+    E --&gt;|Yes| F[Suspicious Activity Report filed]</pre></div></article><article class="proc" data-search="sanctions screening  ofac/watchlist screening on transactions and customers. name-matching produces many false positives (common names) requiring manual clearing."><div class="proc-head"><h3>Sanctions Screening</h3><div class="meta"><span class="steps">7-step flow</span></div><p class="desc">OFAC/watchlist screening on transactions and customers.</p><p class="pain"><b>Where it breaks</b>Name-matching produces many false positives (common names) requiring manual clearing.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Customer/transaction screened against watchlists] --&gt; B{Name match found?}
+    B --&gt;|Yes| C[Manual review to confirm true match]
+    B --&gt;|No| D[Transaction proceeds]
+    C --&gt; E{Confirmed?}
+    E --&gt;|Yes| F[Transaction blocked, reported]
+    E --&gt;|No| G[False positive cleared]</pre></div></article><article class="proc" data-search="risk management  credit risk, market risk, operational risk modeling. aggregating risk data across siloed business-line systems is a manual data-gathering exercise."><div class="proc-head"><h3>Risk Management</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Credit risk, market risk, operational risk modeling.</p><p class="pain"><b>Where it breaks</b>Aggregating risk data across siloed business-line systems is a manual data-gathering exercise.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Risk data gathered across business lines] --&gt; B[Models calculate exposure]
+    B --&gt; C[Results reviewed by risk committee]
+    C --&gt; D[Limits set or adjusted]</pre></div></article><article class="proc" data-search="capital adequacy &amp; stress testing  regulatory capital calculation, scenario analysis. running and validating multiple stress scenarios is a manual, time-intensive quarterly exercise."><div class="proc-head"><h3>Capital Adequacy &amp; Stress Testing</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Regulatory capital calculation, scenario analysis.</p><p class="pain"><b>Where it breaks</b>Running and validating multiple stress scenarios is a manual, time-intensive quarterly exercise.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Balance sheet data gathered] --&gt; B[Stress scenarios applied]
+    B --&gt; C[Capital ratios calculated under each scenario]
+    C --&gt; D[Results submitted to regulator]</pre></div></article><article class="proc" data-search="consumer protection compliance  fair lending, udaap, disclosure requirements. sampling-based file review means most files are never individually checked for compliance."><div class="proc-head"><h3>Consumer Protection Compliance</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Fair lending, UDAAP, disclosure requirements.</p><p class="pain"><b>Where it breaks</b>Sampling-based file review means most files are never individually checked for compliance.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Lending decisions and disclosures reviewed] --&gt; B[Compliance team samples files]
+    B --&gt; C{Issue found?}
+    C --&gt;|Yes| D[Remediation required]
+    C --&gt;|No| E[File cleared]</pre></div></article><article class="proc" data-search="regulatory reporting  basel iii, dodd-frank, call reports. reconciling data from multiple source systems into one report template is manual and error-prone."><div class="proc-head"><h3>Regulatory Reporting</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Basel III, Dodd-Frank, call reports.</p><p class="pain"><b>Where it breaks</b>Reconciling data from multiple source systems into one report template is manual and error-prone.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Data gathered from multiple internal systems] --&gt; B[Report template populated manually]
+    B --&gt; C[Internal review and sign-off]
+    C --&gt; D[Filed with regulator]</pre></div></article></div></details><details class="cat" id="cat-credit-rating-agencies"><summary><span class="cat-title">Credit Rating Agencies</span><span class="count">2 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="credit assessment  evaluating the creditworthiness of a bond issuer or specific debt instrument. the rating committee process relies on manual presentation and discussion of each case."><div class="proc-head"><h3>Credit Assessment</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Evaluating the creditworthiness of a bond issuer or specific debt instrument.</p><p class="pain"><b>Where it breaks</b>The rating committee process relies on manual presentation and discussion of each case.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Issuer provides financial data] --&gt; B[Analyst builds credit model]
+    B --&gt; C[Rating committee reviews and votes]
+    C --&gt; D[Rating assigned]</pre></div></article><article class="proc" data-search="rating issuance &amp; surveillance  publishing and ongoing monitoring of ratings. surveillance is periodic, so a rating can lag a real deterioration in credit quality."><div class="proc-head"><h3>Rating Issuance &amp; Surveillance</h3><div class="meta"><span class="steps">5-step flow</span></div><p class="desc">Publishing and ongoing monitoring of ratings.</p><p class="pain"><b>Where it breaks</b>Surveillance is periodic, so a rating can lag a real deterioration in credit quality.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Rating published] --&gt; B[Analyst monitors issuer performance periodically]
+    B --&gt; C{Material change detected?}
+    C --&gt;|Yes| D[Rating review triggered]
+    C --&gt;|No| E[Rating maintained]</pre></div></article></div></details><details class="cat" id="cat-central-banking-monetary-authorities"><summary><span class="cat-title">Central Banking / Monetary Authorities</span><span class="count">4 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="monetary policy setting  interest rate decisions, policy communication. synthesizing diverse economic indicators into one coherent policy view is a manual analytical process."><div class="proc-head"><h3>Monetary Policy Setting</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Interest rate decisions, policy communication.</p><p class="pain"><b>Where it breaks</b>Synthesizing diverse economic indicators into one coherent policy view is a manual analytical process.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Economic data gathered and analyzed] --&gt; B[Policy committee deliberates]
+    B --&gt; C[Rate decision made]
+    C --&gt; D[Decision communicated to markets]</pre></div></article><article class="proc" data-search="open market operations  managing money supply through securities transactions. assessing real-time liquidity conditions still relies on analyst judgment layered on incomplete data."><div class="proc-head"><h3>Open Market Operations</h3><div class="meta"><span class="steps">3-step flow</span></div><p class="desc">Managing money supply through securities transactions.</p><p class="pain"><b>Where it breaks</b>Assessing real-time liquidity conditions still relies on analyst judgment layered on incomplete data.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Desk assesses liquidity conditions] --&gt; B[Securities bought or sold in the market]
+    B --&gt; C[Impact on money supply monitored]</pre></div></article><article class="proc" data-search="currency issuance  physical and digital currency management. forecasting physical currency demand by denomination and region is imprecise and manual."><div class="proc-head"><h3>Currency Issuance</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Physical and digital currency management.</p><p class="pain"><b>Where it breaks</b>Forecasting physical currency demand by denomination and region is imprecise and manual.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Currency demand forecasted] --&gt; B[Production/minting ordered]
+    B --&gt; C[Currency distributed to banks]
+    C --&gt; D[Worn currency withdrawn and destroyed]</pre></div></article><article class="proc" data-search="bank supervision  regulating and examining financial institutions. on-site/document-based examination is time-intensive and only samples a subset of activity."><div class="proc-head"><h3>Bank Supervision</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Regulating and examining financial institutions.</p><p class="pain"><b>Where it breaks</b>On-site/document-based examination is time-intensive and only samples a subset of activity.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Examination scheduled for institution] --&gt; B[Examiners review records on-site/remotely]
+    B --&gt; C[Findings documented]
+    C --&gt; D[Institution required to remediate issues]</pre></div></article></div></details><details class="cat" id="cat-microfinance-financial-inclusion"><summary><span class="cat-title">Microfinance / Financial Inclusion</span><span class="count">3 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><article class="proc" data-search="micro-lending  small-loan origination and servicing for underserved populations. in-person credit assessment and repayment collection is labor-intensive and limits scale."><div class="proc-head"><h3>Micro-Lending</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Small-loan origination and servicing for underserved populations.</p><p class="pain"><b>Where it breaks</b>In-person credit assessment and repayment collection is labor-intensive and limits scale.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Borrower applies, often in person] --&gt; B[Field officer assesses creditworthiness manually]
+    B --&gt; C[Loan approved and disbursed]
+    C --&gt; D[Field officer collects repayments in person]</pre></div></article><article class="proc" data-search="group lending models  joint-liability lending structures. organizing and tracking group meetings and joint liability is manual and relationship-dependent."><div class="proc-head"><h3>Group Lending Models</h3><div class="meta"><span class="steps">4-step flow</span></div><p class="desc">Joint-liability lending structures.</p><p class="pain"><b>Where it breaks</b>Organizing and tracking group meetings and joint liability is manual and relationship-dependent.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Borrower group formed] --&gt; B[Group jointly guarantees loans]
+    B --&gt; C[Loans disbursed to members]
+    C --&gt; D[Group meets regularly to collect repayments]</pre></div></article><article class="proc" data-search="financial literacy programs  client education and capability building. measuring whether training actually changes client financial behavior is rarely done rigorously."><div class="proc-head"><h3>Financial Literacy Programs</h3><div class="meta"><span class="steps">3-step flow</span></div><p class="desc">Client education and capability building.</p><p class="pain"><b>Where it breaks</b>Measuring whether training actually changes client financial behavior is rarely done rigorously.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+    A[Program curriculum developed] --&gt; B[In-person or group training sessions held]
+    B --&gt; C[Client understanding assessed informally]</pre></div></article></div></details></div><nav class="wrap pager" aria-label="Sector navigation"><a href="retail.html"><small>&larr; Previous sector</small><span>Retail</span></a><a class="next" href="life-sciences.html"><small>Next sector &rarr;</small><span>Life Sciences</span></a></nav></main><footer class="site"><div class="wrap"><span>Business Process Agent Frameworks &middot; Nikhil Kasturi &middot; 2026</span><span>Illustrative reference of common industry practice. Not based on any specific company.</span></div></footer><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script><script>
+(function(){
+  function tok(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+  var ready = false;
+  function init(){
+    if(!window.mermaid) return false;
+    window.mermaid.initialize({
+      startOnLoad:false, securityLevel:'strict', theme:'base',
+      flowchart:{curve:'basis', useMaxWidth:true, htmlLabels:true, nodeSpacing:22, rankSpacing:28, padding:10},
+      themeVariables:{
+        fontFamily:'Trebuchet MS, Lucida Grande, Segoe UI, sans-serif', fontSize:'15px',
+        primaryColor:tok('--pill-bg'), primaryTextColor:tok('--ink'), primaryBorderColor:tok('--accent'),
+        lineColor:tok('--mint'), secondaryColor:tok('--pain-bg'), tertiaryColor:tok('--surface'),
+        edgeLabelBackground:tok('--surface'), clusterBkg:tok('--surface')
+      }
+    });
+    ready = true; return true;
+  }
+  function render(scope){
+    if(!ready && !init()) return;
+    var nodes = Array.prototype.slice.call(scope.querySelectorAll('pre.mermaid:not([data-processed])'));
+    if(nodes.length) window.mermaid.run({nodes:nodes}).catch(function(){});
+  }
+  init();
+  window.__renderDiagrams = render;
+  document.addEventListener('toggle', function(ev){
+    var d = ev.target; if(d && d.tagName==='DETAILS' && d.open) render(d);
+  }, true);
+  window.addEventListener('load', function(){
+    document.querySelectorAll('details.cat[open]').forEach(render);
+  });
+})();
+</script><script>
+(function(){
+  var cats = Array.prototype.slice.call(document.querySelectorAll('details.cat'));
+  // chips: open target category
+  document.querySelectorAll('.chips a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if(t){ t.open = true; }
+    });
+  });
+  function openFromHash(){
+    var id = location.hash.slice(1); if(!id) return;
+    var t = document.getElementById(id);
+    if(t && t.tagName==='DETAILS'){ t.open = true; t.scrollIntoView({block:'start'}); }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+  // search
+  var input = document.getElementById('proc-search');
+  var note = document.getElementById('result-note');
+  var initialOpen = cats.map(function(c){return c.open;});
+  if(input){
+    input.addEventListener('input', function(){
+      var q = input.value.trim().toLowerCase();
+      var total = 0;
+      cats.forEach(function(cat, i){
+        var hits = 0;
+        cat.querySelectorAll('.proc').forEach(function(p){
+          var m = !q || p.getAttribute('data-search').indexOf(q) !== -1;
+          p.hidden = !m; if(m) hits++;
+        });
+        cat.querySelectorAll('.group').forEach(function(g){
+          g.hidden = !g.querySelector('.proc:not([hidden])');
+        });
+        cat.hidden = q && hits === 0;
+        if(q){ if(hits) cat.open = true; } else { cat.open = initialOpen[i]; }
+        total += hits;
+      });
+      note.textContent = q ? (total + (total===1?' process matches':' processes match') + ' “' + input.value.trim() + '”') : '';
+    });
+  }
+})();
+</script><script>
+(function(){
+  var lb, view, stage, pct, titleEl, closeBtn, lastFocus;
+  var s=1, x=0, y=0, w=0, h=0;
+  var pointers = new Map(), pinchDist=0, dragStart=null;
+  function build(){
+    lb = document.createElement('div');
+    lb.className='lightbox'; lb.hidden=true;
+    lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label','Process diagram');
+    lb.innerHTML='<div class="lb-panel"><div class="lb-bar"><span class="lb-title"></span><div class="lb-tools">'+
+      '<button type="button" data-z="out" aria-label="Zoom out">&minus;</button><span class="lb-pct">100%</span>'+
+      '<button type="button" data-z="in" aria-label="Zoom in">+</button>'+
+      '<button type="button" data-z="fit">Fit</button>'+
+      '<button type="button" class="lb-close" data-z="close">Close</button></div></div>'+
+      '<div class="lb-view"><div class="lb-stage"></div></div>'+
+      '<div class="lb-hint">Scroll or pinch to zoom. Drag to move. Keys: + and &minus; zoom, 0 fits, Esc closes.</div></div>';
+    document.body.appendChild(lb);
+    view=lb.querySelector('.lb-view'); stage=lb.querySelector('.lb-stage'); pct=lb.querySelector('.lb-pct');
+    titleEl=lb.querySelector('.lb-title'); closeBtn=lb.querySelector('.lb-close');
+    lb.addEventListener('click', function(ev){
+      var b=ev.target.closest('[data-z]');
+      if(b){ var z=b.getAttribute('data-z'); var c=center();
+        if(z==='in') zoomAt(1.25,c[0],c[1]); else if(z==='out') zoomAt(0.8,c[0],c[1]); else if(z==='fit') fit(); else close();
+        return; }
+      if(ev.target===lb) close();
+    });
+    view.addEventListener('wheel', function(ev){
+      ev.preventDefault(); var r=view.getBoundingClientRect();
+      zoomAt(Math.exp(-ev.deltaY*0.0015), ev.clientX-r.left, ev.clientY-r.top);
+    }, {passive:false});
+    view.addEventListener('pointerdown', function(ev){
+      view.setPointerCapture(ev.pointerId); pointers.set(ev.pointerId,{x:ev.clientX,y:ev.clientY});
+      if(pointers.size===1){ dragStart={px:ev.clientX,py:ev.clientY,x:x,y:y}; view.classList.add('dragging'); }
+      if(pointers.size===2){ pinchDist=dist(); dragStart=null; }
+    });
+    view.addEventListener('pointermove', function(ev){
+      if(!pointers.has(ev.pointerId)) return;
+      pointers.set(ev.pointerId,{x:ev.clientX,y:ev.clientY});
+      if(pointers.size===2){
+        var d=dist(), m=mid(), r=view.getBoundingClientRect();
+        if(pinchDist) zoomAt(d/pinchDist, m[0]-r.left, m[1]-r.top); pinchDist=d;
+      } else if(dragStart){
+        x=dragStart.x+(ev.clientX-dragStart.px); y=dragStart.y+(ev.clientY-dragStart.py); apply();
+      }
+    });
+    function end(ev){ pointers.delete(ev.pointerId); if(pointers.size<2) pinchDist=0;
+      if(pointers.size===0){ dragStart=null; view.classList.remove('dragging'); }
+      else if(pointers.size===1){ var p=pointers.values().next().value; dragStart={px:p.x,py:p.y,x:x,y:y}; } }
+    view.addEventListener('pointerup', end); view.addEventListener('pointercancel', end);
+    document.addEventListener('keydown', function(ev){
+      if(lb.hidden) return; var c=center();
+      if(ev.key==='Escape'){ ev.preventDefault(); close(); }
+      else if(ev.key==='+'||ev.key==='='){ zoomAt(1.25,c[0],c[1]); }
+      else if(ev.key==='-'||ev.key==='_'){ zoomAt(0.8,c[0],c[1]); }
+      else if(ev.key==='0'){ fit(); }
+      else if(ev.key==='Tab'){ // keep focus inside
+        var f=lb.querySelectorAll('button'); var first=f[0], last=f[f.length-1];
+        if(ev.shiftKey && document.activeElement===first){ ev.preventDefault(); last.focus(); }
+        else if(!ev.shiftKey && document.activeElement===last){ ev.preventDefault(); first.focus(); }
+      }
+    });
+    window.addEventListener('resize', function(){ if(!lb.hidden) fit(); });
+  }
+  function dist(){ var p=Array.from(pointers.values()); return Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y); }
+  function mid(){ var p=Array.from(pointers.values()); return [(p[0].x+p[1].x)/2,(p[0].y+p[1].y)/2]; }
+  function center(){ return [view.clientWidth/2, view.clientHeight/2]; }
+  function apply(){ stage.style.transform='translate('+x+'px,'+y+'px) scale('+s+')'; pct.textContent=Math.round(s*100)+'%'; }
+  function zoomAt(f,cx,cy){ var ns=Math.min(8,Math.max(0.2,s*f)); x=cx-(cx-x)*(ns/s); y=cy-(cy-y)*(ns/s); s=ns; apply(); }
+  function fit(){ var vw=view.clientWidth, vh=view.clientHeight; s=Math.min((vw-48)/w,(vh-48)/h,3); if(!(s>0)) s=1;
+    x=(vw-w*s)/2; y=(vh-h*s)/2; apply(); }
+  function open(diagram){
+    var svg=diagram.querySelector('pre.mermaid svg'); if(!svg) return;
+    if(!lb) build();
+    var vb=svg.viewBox && svg.viewBox.baseVal;
+    w=(vb && vb.width) || svg.getBoundingClientRect().width; h=(vb && vb.height) || svg.getBoundingClientRect().height;
+    var clone=svg.cloneNode(true);
+    clone.removeAttribute('style'); clone.setAttribute('width',w); clone.setAttribute('height',h);
+    stage.innerHTML=''; stage.appendChild(clone);
+    var t=diagram.closest('.proc'); titleEl.textContent = t ? t.querySelector('h3').textContent : 'Process diagram';
+    lastFocus=document.activeElement; lb.hidden=false; document.documentElement.style.overflow='hidden';
+    requestAnimationFrame(fit); closeBtn.focus();
+  }
+  function close(){ lb.hidden=true; stage.innerHTML=''; document.documentElement.style.overflow='';
+    if(lastFocus && lastFocus.focus) lastFocus.focus(); }
+  document.addEventListener('click', function(ev){
+    if(lb && !lb.hidden) return;
+    var d=ev.target.closest('.diagram'); if(!d) return;
+    if(d.querySelector('pre.mermaid svg')) open(d);
+  });
+})();
+</script>
+</body>
+</html>
