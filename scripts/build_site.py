@@ -152,7 +152,7 @@ h1,h2,h3{text-wrap:balance}
 /* home */
 .home-hero{padding-block:clamp(48px,9vw,104px) clamp(28px,5vw,48px)}
 .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-2);margin:0 0 18px}
-.home-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.06;margin:0;max-width:16ch;letter-spacing:-.025em}
+.home-hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,5.6vw,4.2rem);line-height:1.08;margin:0;max-width:19ch;letter-spacing:-.025em}
 .home-hero h1 em{font-style:italic;color:var(--accent);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:.08em;text-underline-offset:.12em}
 .home-hero p.lede{max-width:60ch;font-size:clamp(1.02rem,1.6vw,1.15rem);color:var(--ink-soft);margin:24px 0 0}
 .totals{display:flex;flex-wrap:wrap;gap:clamp(20px,5vw,56px);margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
@@ -730,11 +730,10 @@ def home_page(sectors):
     redesign = "".join('<li><b>%s</b><span>%s</span></li>' % (e(t), e(d)) for _, t, d in REDESIGN_SECTIONS)
     body = (topbar("home") + '<main>'
             '<section class="wrap home-hero">'
-            '<p class="eyebrow">%s</p>'
-            '<h1>How work runs <em>today</em>, before agents redesign it.</h1>'
-            '<p class="lede">A mapped baseline of %d business processes across three sectors. Each process has its own page: '
-            'what the function does, the step-by-step flow most organizations still follow, and where it breaks down. '
-            'Next, each one gets a What-If agent ecosystem redesign, published process by process.</p>'
+            '<p class="eyebrow">For leaders planning their next move with AI</p>'
+            '<h1>See where your processes <em>break</em>, and how agents could fix them.</h1>'
+            '<p class="lede">A reference of %d business processes across three sectors. Each one maps the traditional flow and its main pain point, '
+            'followed by a What-If agent ecosystem: the agents, the human checkpoints, and the business outcomes it could drive.</p>'
             '<div class="totals">'
             '<div><strong>3</strong><span>Sectors</span></div>'
             '<div><strong>%d</strong><span>Categories</span></div>'
@@ -748,7 +747,7 @@ def home_page(sectors):
             '<div class="stage"><div class="stage-head"><h3>Stage 1: The baseline</h3>%s</div><ol>%s</ol></div>'
             '<div class="stage soon"><div class="stage-head"><h3>Stage 2: The What-If redesign</h3>%s</div><ol start="4">%s</ol></div>'
             '</div></section>'
-            '</main>' + footer()) % (e(TAGLINE), total, cats, total, published, total, "".join(cards), total,
+            '</main>' + footer()) % (total, cats, total, published, total, "".join(cards), total,
                                      state("live"), baseline, state("soon"), redesign)
     return page(SITE_NAME, "%s %d business processes across Retail, Financial Services and Life Sciences." % (TAGLINE, total), body)
 
