@@ -21,7 +21,7 @@ VER = time.strftime("%Y%m%d%H%M")
 
 SITE_NAME = "The What-If Blueprint"
 AUTHOR = "Nikhil Kasturi"
-TAGLINE = "Every business process, mapped today and redesigned with agents."
+TAGLINE = "What if business processes were designed for agents first?"
 
 SECTORS = [
     {"key": "retail", "dir": "retail", "file": "retail.html", "name": "Retail", "short": "Retail",
@@ -730,10 +730,11 @@ def home_page(sectors):
     redesign = "".join('<li><b>%s</b><span>%s</span></li>' % (e(t), e(d)) for _, t, d in REDESIGN_SECTIONS)
     body = (topbar("home") + '<main>'
             '<section class="wrap home-hero">'
-            '<p class="eyebrow">For leaders planning their next move with AI</p>'
-            '<h1>See where your processes <em>break</em>, and how agents could fix them.</h1>'
-            '<p class="lede">A reference of %d business processes across three sectors. Each one maps the traditional flow and its main pain point, '
-            'followed by a What-If agent ecosystem: the agents, the human checkpoints, and the business outcomes it could drive.</p>'
+            '<p class="eyebrow">A point of view by Nikhil Kasturi</p>'
+            '<h1>What if business processes were designed for <em>agents first</em>?</h1>'
+            '<p class="lede">Most processes grew up around people, paper and spreadsheets, and AI usually gets bolted on at the end. '
+            'I start with the work instead. I map how each process runs today, pinpoint where it breaks, and redesign it from the ground up '
+            'as an agentic ecosystem, showing the agents, the human checkpoints and the business outcomes side by side.</p>'
             '<div class="totals">'
             '<div><strong>3</strong><span>Sectors</span></div>'
             '<div><strong>%d</strong><span>Categories</span></div>'
@@ -747,7 +748,7 @@ def home_page(sectors):
             '<div class="stage"><div class="stage-head"><h3>Stage 1: The baseline</h3>%s</div><ol>%s</ol></div>'
             '<div class="stage soon"><div class="stage-head"><h3>Stage 2: The What-If redesign</h3>%s</div><ol start="4">%s</ol></div>'
             '</div></section>'
-            '</main>' + footer()) % (total, cats, total, published, total, "".join(cards), total,
+            '</main>' + footer()) % (cats, total, published, total, "".join(cards), total,
                                      state("live"), baseline, state("soon"), redesign)
     return page(SITE_NAME, "%s %d business processes across Retail, Financial Services and Life Sciences." % (TAGLINE, total), body)
 

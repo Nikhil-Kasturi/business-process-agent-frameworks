@@ -1,6 +1,6 @@
 # The What-If Blueprint
 
-**Every business process, mapped today and redesigned with agents.**
+**What if business processes were designed for agents first?** A point of view by Nikhil Kasturi.
 
 [![Live site](https://img.shields.io/badge/live%20site-GitHub%20Pages-1E7A57)](https://nikhil-kasturi.github.io/business-process-agent-frameworks/)
 [![Processes mapped](https://img.shields.io/badge/processes%20mapped-162-0F3B2E)](#whats-inside)
