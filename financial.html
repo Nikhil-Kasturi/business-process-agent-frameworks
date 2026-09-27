@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Financial Services Process Flows</title>
 <meta name="description" content="How money is lent, invested, insured, moved and reconciled, from retail banking and capital markets to the corporate finance back office.">
+<script>try{if(localStorage.getItem('pf-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
 
 <style>
 :root{
@@ -17,16 +18,6 @@
   --body:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", sans-serif;
   --mono:"Trebuchet MS", "Lucida Grande", "Segoe UI", sans-serif;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0C1712; --surface:#12211A; --surface-2:#1A2E25; --ink:#EEF1EA; --ink-soft:#A9BDB2; --line:#24392F;
-    --accent:#5FBF94; --accent-2:#8FCDB0; --mint:#A8C5B4; --gold:#C8A45D; --on-accent:#0C1712;
-    --band-bg:#0F3B2E; --band-ink:#FAF9F5; --band-soft:#C8A45D;
-    --pain-bg:#2A2616; --pain-label:#D9B870; --pill-bg:#1A2E25; --pill-ink:#CFE3D8; --focus:#8FCDB0;
-    --shadow:0 1px 0 rgba(0,0,0,.25),0 14px 32px -18px rgba(0,0,0,.75);
-    color-scheme: dark;
-  }
 }
 :root[data-theme="dark"]{
   --bg:#0C1712; --surface:#12211A; --surface-2:#1A2E25; --ink:#EEF1EA; --ink-soft:#A9BDB2; --line:#24392F;
@@ -176,11 +167,19 @@ footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 .lb-stage svg{display:block;max-width:none!important}
 .lb-hint{padding:8px 14px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-soft)}
 @media (max-width:600px){.lb-hint{display:none}.lightbox{padding-inline:8px}}
+
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.theme-toggle{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.84rem;font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.theme-toggle svg{width:15px;height:15px}
+.theme-toggle .i-sun{display:none}
+:root[data-theme="dark"] .theme-toggle .i-sun{display:block}
+:root[data-theme="dark"] .theme-toggle .i-moon{display:none}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header class="topbar"><div class="wrap"><a class="brand" href="index.html"><b>Process Frameworks</b><span>by Nikhil Kasturi</span></a><nav class="nav" aria-label="Sectors"><a href="index.html">Overview</a><a href="retail.html">Retail</a><a href="financial.html" aria-current="page">Financial</a><a href="life-sciences.html">Life Sciences</a></nav></div></header><main><section class="band"><div class="wrap"><a class="crumb" href="index.html">&larr; All sectors</a><h1>Financial Services</h1><p>How money is lent, invested, insured, moved and reconciled, from retail banking and capital markets to the corporate finance back office.</p><div class="stats"><div><b>12</b> <span>categories</span></div><div><b>71</b> <span>process flows</span></div></div></div></section><div class="tools"><div class="wrap"><label class="search" for="proc-search"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search processes</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg><input id="proc-search" type="search" placeholder="Search 71 processes" autocomplete="off"></label><nav class="chips" aria-label="Categories"><a href="#cat-banking">Banking<span class="n">14</span></a><a href="#cat-investment-banking-capital-markets">Investment Banking &amp; Capital Markets<span class="n">6</span></a><a href="#cat-asset-wealth-management">Asset &amp; Wealth Management<span class="n">8</span></a><a href="#cat-insurance">Insurance<span class="n">6</span></a><a href="#cat-payments-fintech">Payments &amp; Fintech<span class="n">6</span></a><a href="#cat-financial-market-infrastructure">Financial Market Infrastructure<span class="n">3</span></a><a href="#cat-private-equity-venture-capital">Private Equity &amp; Venture Capital<span class="n">4</span></a><a href="#cat-corporate-finance-financial-operations">Corporate Finance / Financial Operations<span class="n">9</span></a><a href="#cat-regulatory-compliance">Regulatory &amp; Compliance<span class="n">6</span></a><a href="#cat-credit-rating-agencies">Credit Rating Agencies<span class="n">2</span></a><a href="#cat-central-banking-monetary-authorities">Central Banking / Monetary Authorities<span class="n">4</span></a><a href="#cat-microfinance-financial-inclusion">Microfinance / Financial Inclusion<span class="n">3</span></a></nav><p class="result-note" id="result-note" aria-live="polite"></p></div></div><div class="wrap cats"><details class="cat" id="cat-banking" open><summary><span class="cat-title">Banking</span><span class="count">14 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><div class="group" style="display:flex;flex-direction:column;gap:18px"><p class="group-label">Retail Banking</p><article class="proc" data-search="account opening &amp; onboarding  verifying customer identity and running kyc checks before an account is created. sets up the account and links initial funding sources. document verification and edge-case kyc review is manual and slows down onboarding."><div class="proc-head"><h3>Account Opening &amp; Onboarding</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Verifying customer identity and running KYC checks before an account is created. Sets up the account and links initial funding sources.</p><p class="pain"><b>Where it breaks</b>Document verification and edge-case KYC review is manual and slows down onboarding.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
+<header class="topbar"><div class="wrap"><a class="brand" href="index.html"><b>Process Frameworks</b><span>by Nikhil Kasturi</span></a><div class="topbar-right"><nav class="nav" aria-label="Sectors"><a href="index.html">Overview</a><a href="retail.html">Retail</a><a href="financial.html" aria-current="page">Financial</a><a href="life-sciences.html">Life Sciences</a></nav><button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false"><svg class="i-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z"/></svg><svg class="i-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3 3l1 1M12 12l1 1M13 3l-1 1M4 12l-1 1"/></svg><span class="theme-label">Dark</span></button></div></div></header><main><section class="band"><div class="wrap"><a class="crumb" href="index.html">&larr; All sectors</a><h1>Financial Services</h1><p>How money is lent, invested, insured, moved and reconciled, from retail banking and capital markets to the corporate finance back office.</p><div class="stats"><div><b>12</b> <span>categories</span></div><div><b>71</b> <span>process flows</span></div></div></div></section><div class="tools"><div class="wrap"><label class="search" for="proc-search"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search processes</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg><input id="proc-search" type="search" placeholder="Search 71 processes" autocomplete="off"></label><nav class="chips" aria-label="Categories"><a href="#cat-banking">Banking<span class="n">14</span></a><a href="#cat-investment-banking-capital-markets">Investment Banking &amp; Capital Markets<span class="n">6</span></a><a href="#cat-asset-wealth-management">Asset &amp; Wealth Management<span class="n">8</span></a><a href="#cat-insurance">Insurance<span class="n">6</span></a><a href="#cat-payments-fintech">Payments &amp; Fintech<span class="n">6</span></a><a href="#cat-financial-market-infrastructure">Financial Market Infrastructure<span class="n">3</span></a><a href="#cat-private-equity-venture-capital">Private Equity &amp; Venture Capital<span class="n">4</span></a><a href="#cat-corporate-finance-financial-operations">Corporate Finance / Financial Operations<span class="n">9</span></a><a href="#cat-regulatory-compliance">Regulatory &amp; Compliance<span class="n">6</span></a><a href="#cat-credit-rating-agencies">Credit Rating Agencies<span class="n">2</span></a><a href="#cat-central-banking-monetary-authorities">Central Banking / Monetary Authorities<span class="n">4</span></a><a href="#cat-microfinance-financial-inclusion">Microfinance / Financial Inclusion<span class="n">3</span></a></nav><p class="result-note" id="result-note" aria-live="polite"></p></div></div><div class="wrap cats"><details class="cat" id="cat-banking" open><summary><span class="cat-title">Banking</span><span class="count">14 processes</span><span class="chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l4 4 4-4"/></svg></span></summary><div class="cat-body"><div class="group" style="display:flex;flex-direction:column;gap:18px"><p class="group-label">Retail Banking</p><article class="proc" data-search="account opening &amp; onboarding  verifying customer identity and running kyc checks before an account is created. sets up the account and links initial funding sources. document verification and edge-case kyc review is manual and slows down onboarding."><div class="proc-head"><h3>Account Opening &amp; Onboarding</h3><div class="meta"><span class="steps">6-step flow</span></div><p class="desc">Verifying customer identity and running KYC checks before an account is created. Sets up the account and links initial funding sources.</p><p class="pain"><b>Where it breaks</b>Document verification and edge-case KYC review is manual and slows down onboarding.</p></div><div class="diagram"><button class="zoom-btn" type="button" aria-label="Open diagram full screen to zoom"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 1h4v4M5 11H1V7M11 1 7 5M1 11l4-4"/></svg>Expand</button><pre class="mermaid">flowchart TD
     A[Customer submits application, ID documents] --&gt; B[Staff manually verifies identity documents]
     B --&gt; C[KYC checks run against watchlists]
     C --&gt; D{Checks pass?}
@@ -467,6 +466,13 @@ footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
     var nodes = Array.prototype.slice.call(scope.querySelectorAll('pre.mermaid:not([data-processed])'));
     if(nodes.length) window.mermaid.run({nodes:nodes}).catch(function(){});
   }
+  document.querySelectorAll('pre.mermaid').forEach(function(p){ p.setAttribute('data-src', p.textContent); });
+  document.addEventListener('pf-themechange', function(){
+    ready=false; init();
+    document.querySelectorAll('pre.mermaid[data-processed]').forEach(function(p){
+      p.removeAttribute('data-processed'); p.textContent = p.getAttribute('data-src'); });
+    document.querySelectorAll('details.cat[open]').forEach(render);
+  });
   init();
   window.__renderDiagrams = render;
   document.addEventListener('toggle', function(ev){
@@ -607,6 +613,22 @@ footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
     var d=ev.target.closest('.diagram'); if(!d) return;
     if(d.querySelector('pre.mermaid svg')) open(d);
   });
+})();
+</script>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme-toggle'); if(!btn) return;
+  var label=btn.querySelector('.theme-label');
+  function sync(){ var dark=root.getAttribute('data-theme')==='dark';
+    btn.setAttribute('aria-pressed', dark?'true':'false'); label.textContent = dark?'Light':'Dark';
+    btn.setAttribute('aria-label', dark?'Switch to light mode':'Switch to dark mode'); }
+  btn.addEventListener('click', function(){
+    var dark = root.getAttribute('data-theme')!=='dark';
+    if(dark) root.setAttribute('data-theme','dark'); else root.setAttribute('data-theme','light');
+    try{ localStorage.setItem('pf-theme', dark?'dark':'light'); }catch(e){}
+    sync(); document.dispatchEvent(new CustomEvent('pf-themechange'));
+  });
+  sync();
 })();
 </script>
 </body>
